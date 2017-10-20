@@ -48,6 +48,7 @@ public:
 	// Relies on the compiler-provided copy constructor
 	// Relies on the compiler-provided assignment operator
 	AddressBookEntry(const AddressBookEntry& rhs);
+	AddressBookEntry& operator=(const AddressBookEntry& rhs);
 
 	string getImageName() const;
 	void setImageName(string newname);
@@ -55,6 +56,7 @@ public:
 	void setPerson(Person person) { _person = person; }
 
 private:
+	void swap(const AddressBookEntry& rhs);
 	Person _person;					//!< Contains the name and age of the person
 	unique_ptr<Image> _image_ptr;	//!< A shared pointer to the person's image
 };

@@ -23,6 +23,21 @@ AddressBookEntry::AddressBookEntry(const AddressBookEntry& rhs) : _person(rhs._p
 	}
 }
 
+AddressBookEntry& AddressBookEntry::operator=(const AddressBookEntry& rhs)
+{
+	AddressBookEntry temp(rhs);
+	swap(temp);
+	return *this;
+}
+
+void AddressBookEntry::swap(const AddressBookEntry& rhs)
+{
+	_person = rhs._person;
+	if (rhs.getImageName() != "") {
+        _image_ptr = make_unique<Image>(rhs.getImageName());
+	}
+}
+
 string AddressBookEntry::getImageName() const
 {
 	if (_image_ptr != nullptr)
