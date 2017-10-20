@@ -12,7 +12,14 @@ AddressBookEntry::AddressBookEntry(	const Person& person,
 	// dynamically allocate memory for the image
 	if (image_filename != "") {
 		// ignore (for now) what will happen if there is a memory allocation failure
-        _image_ptr = make_shared<Image>(image_filename);
+        _image_ptr = make_unique<Image>(image_filename);
+	}
+}
+
+AddressBookEntry::AddressBookEntry(const AddressBookEntry& rhs) : _person(rhs._person)
+{
+	if (rhs.getImageName() != "") {
+        _image_ptr = make_unique<Image>(rhs.getImageName());
 	}
 }
 
